@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sentence Game</title>
+<title>Habitus English Lab</title>
 
 <style>
 
@@ -11,28 +11,72 @@ body {
   font-family: 'Pretendard', sans-serif;
   background: linear-gradient(135deg, #eef2ff, #f8fbff);
   margin: 0;
-  padding: 20px;
+  padding: 0;
   text-align: center;
 }
 
+/* 🔷 헤더 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 80px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* 로고 (왼쪽 고정) */
+#logo {
+  position: absolute;
+  left: 20px;
+  width: 110px;
+}
+
+/* 학원 이름 */
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+
+/* 컨테이너 */
 .container {
   max-width: 900px;
-  margin: auto;
+  margin: 30px auto;
   background: white;
   padding: 25px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-#logo {
-  width: 140px;
-  margin-bottom: 15px;
+/* 버튼 */
+.main-btn {
+  font-size: 16px;
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: white;
 }
 
-#questionNumber {
-  font-size: 20px;
-  color: #666;
+.start {
+  background: #10b981;
+  display: block;
+  margin: 20px auto;
 }
+
+.check { background: #6366f1; }
+.next { background: #f59e0b; }
+
+.main-btn:hover {
+  opacity: 0.85;
+}
+
+/* 텍스트 */
+#questionNumber { font-size: 20px; color: #666; }
 
 #koreanBox {
   font-size: 20px;
@@ -43,6 +87,7 @@ body {
   border-radius: 12px;
 }
 
+/* 단어 버튼 */
 #wordBox button {
   font-size: 17px;
   margin: 6px;
@@ -52,48 +97,24 @@ body {
   background: #4a6cf7;
   color: white;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
-#wordBox button:hover {
-  background: #3451d1;
-  transform: translateY(-2px);
-}
-
+/* 답 영역 */
 #answerBox {
   font-size: 22px;
   margin-top: 20px;
   min-height: 50px;
   padding: 10px;
-  border-radius: 10px;
   background: #fafafa;
+  border-radius: 10px;
 }
 
 .answer-word {
   margin-right: 8px;
-  cursor: pointer;
-  display: inline-block;
   background: #e8edff;
   padding: 5px 8px;
   border-radius: 6px;
-}
-
-.main-btn {
-  font-size: 16px;
-  padding: 10px 18px;
-  margin: 6px;
-  border-radius: 10px;
-  border: none;
   cursor: pointer;
-  color: white;
-}
-
-.start { background: #10b981; }
-.check { background: #6366f1; }
-.next { background: #f59e0b; }
-
-.main-btn:hover {
-  opacity: 0.85;
 }
 
 #result {
@@ -107,9 +128,13 @@ body {
 
 <body>
 
-<div class="container">
+<!-- 🔷 헤더 -->
+<div class="header">
+  <img src="logo.png" id="logo">
+  <div class="title">Habitus English Lab</div>
+</div>
 
-<img src="logo.png" id="logo">
+<div class="container">
 
 <button class="main-btn start" onclick="startGame()">문제 시작</button>
 
@@ -124,7 +149,6 @@ body {
 <h3>내가 만든 문장</h3>
 <div id="answerBox"></div>
 
-<br>
 <button class="main-btn check" onclick="checkAnswer()">정답 확인</button>
 <button class="main-btn next" onclick="nextSentence()">다음 문제</button>
 
