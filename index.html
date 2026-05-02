@@ -134,12 +134,16 @@ body {
 <h3>Your Sentence</h3>
 <div id="answerBox"></div>
 
-<button class="main-btn check" onclick="checkAnswer()">Check Answer</button>
-<button class="main-btn next" onclick="nextSentence()">Next</button>
+<button class="main-btn check" onclick="checkAnswer()">정답 확인</button>
+<button class="main-btn next" onclick="nextSentence()">다음 문제</button>
 
 <p id="result"></p>
 
 </div>
+
+<!-- 🔊 효과음 -->
+<audio id="correctSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
+<audio id="wrongSound" src="https://actions.google.com/sounds/v1/cartoon/boing.ogg"></audio>
 
 <script>
 
@@ -232,15 +236,22 @@ function addWord(word, btn) {
 }
 
 function checkAnswer() {
+
   let spans = document.querySelectorAll("#answerBox span");
   let answer = Array.from(spans).map(s => s.innerText).join(" ");
   let original = originalWords.join(" ");
 
-  document.getElementById("result").innerText =
-    answer === original ? "Correct!" : "Try again!";
+  if (answer === original) {
+    document.getElementById("result").innerText = "정답!";
+    document.getElementById("correctSound").play();
+  } else {
+    document.getElementById("result").innerText = "다시 시도!";
+    document.getElementById("wrongSound").play();
+  }
 }
 
 function nextSentence() {
+
   let spans = document.querySelectorAll("#answerBox span");
   let answer = Array.from(spans).map(s => s.innerText).join(" ");
   let original = originalWords.join(" ");
@@ -253,7 +264,7 @@ function nextSentence() {
     loadSentence();
   } else {
     document.getElementById("result").innerText =
-      "Finished! Score: " + score + " / " + sentences.length;
+      "끝! 점수: " + score + " / " + sentences.length;
   }
 }
 
