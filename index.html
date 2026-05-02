@@ -6,7 +6,6 @@
 <title>Habitus English Lab</title>
 
 <style>
-
 body {
   font-family: 'Pretendard', sans-serif;
   background: linear-gradient(135deg, #eef2ff, #f8fbff);
@@ -55,12 +54,7 @@ body {
   color: white;
 }
 
-.start {
-  background: #10b981;
-  display: block;
-  margin: 20px auto;
-}
-
+.start { background: #10b981; display: block; margin: 20px auto; }
 .check { background: #6366f1; }
 .next { background: #f59e0b; }
 
@@ -108,7 +102,6 @@ body {
   margin-top: 15px;
   font-weight: bold;
 }
-
 </style>
 </head>
 
@@ -141,11 +134,11 @@ body {
 
 </div>
 
-<!-- 🔊 효과음 -->
-<audio id="correctSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
-<audio id="wrongSound" src="https://actions.google.com/sounds/v1/cartoon/boing.ogg"></audio>
-
 <script>
+
+// 🔊 효과음 (박수 + 귀여운 땡)
+const correctSound = new Audio("https://actions.google.com/sounds/v1/crowd/applause.ogg");
+const wrongSound = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");
 
 let sentences = [
 "One valuable technique for getting out of helplessness, depression, and situations which are predominantly being run by the thought, “I can’t,” is to choose to be with other persons who have resolved the problem with which we struggle.",
@@ -182,13 +175,16 @@ function splitIntoPhrases(sentence) {
 }
 
 function startGame() {
+  // 🔥 사운드 미리 깨우기 (모바일 안정)
+  correctSound.play().then(()=>correctSound.pause()).catch(()=>{});
+  wrongSound.play().then(()=>wrongSound.pause()).catch(()=>{});
+
   currentIndex = 0;
   score = 0;
   loadSentence();
 }
 
 function loadSentence() {
-
   document.getElementById("questionNumber").innerText =
     "Question " + (currentIndex + 1) + " / " + sentences.length;
 
@@ -242,11 +238,13 @@ function checkAnswer() {
   let original = originalWords.join(" ");
 
   if (answer === original) {
-    document.getElementById("result").innerText = "정답!";
-    document.getElementById("correctSound").play();
+    document.getElementById("result").innerText = "정답! Correct answer!👏👏👏";
+    correctSound.currentTime = 0;
+    correctSound.play().catch(()=>{});
   } else {
-    document.getElementById("result").innerText = "다시 시도!";
-    document.getElementById("wrongSound").play();
+    document.getElementById("result").innerText = "땡! 틀렸습니다. Try again😍";
+    wrongSound.currentTime = 0;
+    wrongSound.play().catch(()=>{});
   }
 }
 
