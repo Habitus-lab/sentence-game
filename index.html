@@ -2,35 +2,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sentence Game</title>
 
 <style>
 body {
   font-family: sans-serif;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
   background-color: #f5f7fb;
 }
 
 #logo {
-  width: 200px;
+  width: 180px;
   display: block;
   margin: 0 auto 20px auto;
 }
 
 #questionNumber {
-  font-size: 24px;
+  font-size: 22px;
 }
 
 #koreanBox {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
-  margin: 20px;
+  margin: 15px;
 }
 
 #wordBox button {
-  font-size: 20px;
-  margin: 5px;
+  font-size: 18px;
+  margin: 4px;
   padding: 10px;
   border-radius: 8px;
   border: none;
@@ -40,7 +41,7 @@ body {
 }
 
 #answerBox {
-  font-size: 24px;
+  font-size: 22px;
   margin-top: 20px;
   min-height: 40px;
 }
@@ -52,7 +53,7 @@ body {
 }
 
 button {
-  font-size: 18px;
+  font-size: 16px;
   padding: 10px 15px;
   margin: 5px;
   border-radius: 8px;
@@ -63,8 +64,8 @@ button {
 }
 
 #result {
-  font-size: 22px;
-  margin-top: 20px;
+  font-size: 20px;
+  margin-top: 15px;
 }
 </style>
 </head>
@@ -119,7 +120,7 @@ let score = 0;
 let originalWords = [];
 let shuffledWords = [];
 
-// ⭐ 2단어씩 끊는 핵심 함수
+// ⭐ 2단어씩 나누기
 function splitIntoPhrases(sentence) {
   let words = sentence.split(" ");
   let result = [];
@@ -180,7 +181,6 @@ function addWord(word, btn) {
   span.innerText = word;
   span.className = "answer-word";
 
-  // 다시 클릭하면 되돌리기
   span.onclick = function() {
     btn.style.display = "inline-block";
     span.remove();
