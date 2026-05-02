@@ -15,7 +15,6 @@ body {
   text-align: center;
 }
 
-/* 🔷 헤더 */
 .header {
   display: flex;
   align-items: center;
@@ -26,22 +25,17 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* 로고 (왼쪽 고정) */
 #logo {
   position: absolute;
   left: 20px;
   width: 110px;
 }
 
-/* 학원 이름 */
 .title {
   font-size: 22px;
   font-weight: bold;
-  color: #333;
-  letter-spacing: 0.5px;
 }
 
-/* 컨테이너 */
 .container {
   max-width: 900px;
   margin: 30px auto;
@@ -51,7 +45,6 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* 버튼 */
 .main-btn {
   font-size: 16px;
   padding: 12px 20px;
@@ -71,11 +64,6 @@ body {
 .check { background: #6366f1; }
 .next { background: #f59e0b; }
 
-.main-btn:hover {
-  opacity: 0.85;
-}
-
-/* 텍스트 */
 #questionNumber { font-size: 20px; color: #666; }
 
 #koreanBox {
@@ -87,7 +75,6 @@ body {
   border-radius: 12px;
 }
 
-/* 단어 버튼 */
 #wordBox button {
   font-size: 17px;
   margin: 6px;
@@ -99,7 +86,6 @@ body {
   cursor: pointer;
 }
 
-/* 답 영역 */
 #answerBox {
   font-size: 22px;
   margin-top: 20px;
@@ -128,7 +114,6 @@ body {
 
 <body>
 
-<!-- 🔷 헤더 -->
 <div class="header">
   <img src="logo.png" id="logo">
   <div class="title">Habitus English Lab</div>
@@ -136,16 +121,21 @@ body {
 
 <div class="container">
 
-<button class="main-btn start" onclick="startGame()">문제 시작</button>
+<button class="main-btn start" onclick="startGame()">Start</button>
 
 <h3 id="questionNumber"></h3>
 
 <h3>Translation</h3>
-<h3>Scrambled Phrases</h3>
-<h3>Your Sentence</h3>
+<div id="koreanBox"></div>
 
-<button class="main-btn check" onclick="checkAnswer()">정답 확인</button>
-<button class="main-btn next" onclick="nextSentence()">다음 문제</button>
+<h3>Scrambled Phrases</h3>
+<div id="wordBox"></div>
+
+<h3>Your Sentence</h3>
+<div id="answerBox"></div>
+
+<button class="main-btn check" onclick="checkAnswer()">Check Answer</button>
+<button class="main-btn next" onclick="nextSentence()">Next</button>
 
 <p id="result"></p>
 
@@ -196,7 +186,7 @@ function startGame() {
 function loadSentence() {
 
   document.getElementById("questionNumber").innerText =
-    "문제 " + (currentIndex + 1) + " / " + sentences.length;
+    "Question " + (currentIndex + 1) + " / " + sentences.length;
 
   document.getElementById("koreanBox").innerText =
     meanings[currentIndex];
@@ -247,7 +237,7 @@ function checkAnswer() {
   let original = originalWords.join(" ");
 
   document.getElementById("result").innerText =
-    answer === original ? "정답!" : "틀림!";
+    answer === original ? "Correct!" : "Try again!";
 }
 
 function nextSentence() {
@@ -263,7 +253,7 @@ function nextSentence() {
     loadSentence();
   } else {
     document.getElementById("result").innerText =
-      "끝! 점수: " + score + " / " + sentences.length;
+      "Finished! Score: " + score + " / " + sentences.length;
   }
 }
 
